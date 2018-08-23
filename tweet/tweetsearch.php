@@ -41,16 +41,18 @@
 			    ->buildOauth($url, $requestMethod)
 			    ->performRequest();
 
+			echo "Request URL: " . $url . $getfield . "\n";
 			var_dump(json_decode($response));
 		}
 
 		public function searchHash($hashTag)
 		{
-			$hashTag = ltrim("#");
+			$hashTag = ltrim($hashTag, "#");
 			$url = 'https://api.twitter.com/1.1/search/tweets.json';
 			$getfield = '?q=#' . $hashTag;
 			$requestMethod = 'GET';
 
+			echo "Request URL: " . $url . $getfield . "\n";
 			$response = $this->twitter->setGetfield($getfield)
 			    ->buildOauth($url, $requestMethod)
 			    ->performRequest();
