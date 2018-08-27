@@ -35,10 +35,15 @@
 
           const TableBody = props => { 
               const rows = props.characterData.map((row, index) => {
+                  let style = {
+                    width: '48px'
+                  };
+
                   return (
                       <tr key={index}>
                           <td>{row.name}</td>
                           <td>{row.job}</td>
+                          <td style={style}><img src={row.image} class="img-fluid" /></td>
                       </tr>
                   );
               });
@@ -59,13 +64,49 @@
               }
           }
 
+          const CardBody = props => { 
+              const rows = props.characterData.map((row, index) => {
+                  let style = {
+                    width: '48px'
+                  };
+
+                  return (
+                      <div class="col-md-3">
+                      <div class="card">
+                        <img class="card-img-top mx-auto mt-2" style={style} src={row.image} alt="Card image cap" />
+                        <div class="card-body">
+                          <h5 class="card-title">{row.name}</h5>
+                          <p class="card-text">{row.job}</p>
+                          <a href="#link">Go to Tweet</a>
+                        </div>
+                      </div>
+                      </div>
+                  );
+              });
+
+              return rows;
+          }
+
+          class Card extends React.Component {
+              render() {
+                  const { characterData } = this.props;
+
+                  return (
+                      <div class="cardHolder row">
+                          <CardBody characterData={characterData} />
+                      </div>
+                  );
+              }
+          }
+
 
           class App extends React.Component {
               state = {
                   characters: [
                       {
                           'name': 'Tweet 1',
-                          'job': 'Tweet content hello!'
+                          'job': 'Tweet content hello!',
+                          'image' : 'https://via.placeholder.com/48x48'
                       }
                   ]        
                };
@@ -83,7 +124,7 @@
                     res = jQuery.parseJSON(res);
                     const characters = res.statuses.map( obj => { 
                     
-                    return {"name":obj.user.name,"job":obj.text}; } );
+                    return {"name":obj.user.name,"job":obj.text,'image':obj.user.profile_image_url}; } );
 
                     rt.setState({
                       "characters" : characters
@@ -102,6 +143,7 @@
                     <div class="container">
                      <h1>Hello, Twitter! (ReactJS Version)</h1>
                     </div>
+                    <div class="container">
                     <form action="tweetsearch.php" class="text-left">
                       <div class="form-group">
                         <label for="user">User Search</label>
@@ -118,13 +160,19 @@
                       <input type="hidden" name="getsample" value="1" />
                     </form>
 
+                    <p>Please click search in form above to emulate a query to twitter API, (Currently Using sample data. see  ./sample.json for more information on raw source.</p>
+                    <p><a href="https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets.html" target="_blank">Reference</a></p>
+                    </div>
+
                     <div class="container">  
+                      <h2 class="mb-3">Formatted Results (somewhat)</h2>
                       <Table characterData={characters} ></Table>
                     </div>
 
-                    <p>Please click search in form above to emulate a query to twitter API, (Currently Using sample data. see  ./sample.json for more information on raw source.</p>
-                    <p><a href="https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets.html" target="_blank">Reference</a></p>
-
+                    <div class="container">
+                      <h2 class="mb-3">Formatted Results (better)</h2>
+                      <Card characterData={characters} />
+                    </div>
 
                   </section>
                   ); 
