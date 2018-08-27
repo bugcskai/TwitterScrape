@@ -64,20 +64,8 @@
               state = {
                   characters: [
                       {
-                          'name': 'Charlie',
-                          'job': 'Janitor'
-                      },
-                      {
-                          'name': 'Mac',
-                          'job': 'Bouncer'
-                      },
-                      {
-                          'name': 'Dee',
-                          'job': 'Aspring actress'
-                      },
-                      {
-                          'name': 'Dennis',
-                          'job': 'Bartender'
+                          'name': 'Tweet 1',
+                          'job': 'Tweet content hello!'
                       }
                   ]        
                };
@@ -112,7 +100,7 @@
                   return (
                   <section class="jumbotron text-center">
                     <div class="container">
-                     <h1>Hello, Twitter!</h1>
+                     <h1>Hello, Twitter! (ReactJS Version)</h1>
                     </div>
                     <form action="tweetsearch.php" class="text-left">
                       <div class="form-group">
@@ -133,6 +121,9 @@
                     <div class="container">  
                       <Table characterData={characters} ></Table>
                     </div>
+
+                    <p>Please click search in form above to emulate a query to twitter API, (Currently Using sample data. see  ./sample.json for more information on raw source.</p>
+                    <p><a href="https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets.html" target="_blank">Reference</a></p>
 
 
                   </section>
