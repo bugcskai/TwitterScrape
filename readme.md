@@ -1,4 +1,4 @@
-## Version 1
+## Version 1.1
 
 22-8-2018 - First commit for frontend and wrapper 
 
@@ -6,11 +6,15 @@
 
 26-8-2018 - Added ReactJS example and used a sample Tweet API request as a sample formatter.
 
+27-8-2018 - API request is still not approved so used sample data string from twitter developer instead. the example is used in the reactJs version of the code.
+
 ## Installation and usage
 
-Just clone the repository, rehost the script file on the server, run composer update to get the twitter wrapper and you are good to go. Package contains two PHP scripts, one readme, one JS script and a composer dependency file.
+Just clone the repository, rehost the script file on the server, run composer update to get the twitter wrapper and you are good to go. 
 
 ```composer update```
+
+Package contains two PHP scripts, one readme, one JS script and a composer dependency file.
 
 a demo is hosted here
 
@@ -20,7 +24,7 @@ http://hirekai.com/tweet/tweet-react/twitter.php (Using ReactJS).
 
 ## About the Twitter API Scrapper
 
-This simple tool is built on PHP using bootstrap quickstart template and a Twitter PHP API Wrapper by J7mbo, sources below:
+This simple tool is built on PHP using bootstrap quickstart template, inline ReactJS, and a Twitter PHP API Wrapper by J7mbo, sources below:
 
 https://getbootstrap.com/docs/4.0/getting-started/introduction/
 
