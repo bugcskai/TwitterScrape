@@ -73,7 +73,7 @@
 
 			var_dump(json_decode($response));
 		}
-
+ 
 
 		/**
 		 * Returns just a sample JSON dump of the twitter API
@@ -82,7 +82,7 @@
 		 */ 
 		public function searchTweetsSample()
 		{
-			$file = file_get_contents('./sample.json', true);
+			$file = file_get_contents('./sample.json', FILE_USE_INCLUDE_PATH);
 
 			try {
 				$json = json_decode($file);
@@ -112,5 +112,7 @@
 
 	if ( isset(  $_POST['getsample'] ) )
 	{
-		$twitterClass->searchTweetsSample();
+		/*don't apply anything at the moment*/
+		$json = $twitterClass->searchTweetsSample();
+		echo json_encode($json);
 	}
