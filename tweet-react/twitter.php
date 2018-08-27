@@ -27,7 +27,7 @@
                   <thead>
                       <tr>
                           <th>Name</th>
-                          <th>Job</th>
+                          <th>Tweet</th>
                       </tr>
                   </thead>
               );
@@ -61,10 +61,8 @@
 
 
           class App extends React.Component {
-
-
-              render() { 
-                  const characters = [
+              state = {
+                  characters: [
                       {
                           'name': 'Charlie',
                           'job': 'Janitor'
@@ -81,7 +79,35 @@
                           'name': 'Dennis',
                           'job': 'Bartender'
                       }
-                  ];
+                  ]        
+               };
+
+              componentDidMount() {
+
+                var rt = this;
+
+                $('form').submit(function(e){
+                  e.preventDefault();
+                  var t = $(this);
+                  var d = t.serialize();
+                  $.post(t.attr('action'),d, (res) => {
+                    //build results into table
+                    res = jQuery.parseJSON(res);
+                    const characters = res.statuses.map( obj => { 
+                    
+                    return {"name":obj.user.name,"job":obj.text}; } );
+
+                    rt.setState({
+                      "characters" : characters
+                    });
+
+                    //ReactDOM.render(<App />, document.getElementById('root'));
+                  })
+                });
+              }
+
+              render() { 
+                  const characters = this.state.characters;
 
                   return (
                   <section class="jumbotron text-center">
